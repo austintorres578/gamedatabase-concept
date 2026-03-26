@@ -280,6 +280,7 @@ a {
 }
 .mobile-nav.open {
   transform: translateY(0);
+  top: 80px;
 }
 .mobile-nav .nav-link {
   font-size: 1rem;
@@ -640,6 +641,7 @@ body:hover .cursor-ring {
   transition: width 0.1s linear;
 }
 
+
 @media (max-width: 768px) {
   .nav-links,
   .nav-actions {
@@ -654,5 +656,20 @@ body:hover .cursor-ring {
   }
   .footer-cols {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .profile-header-card{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .profile-header-card .profile-left{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-header-card .profile-left .profile-identity{
+    width: 100%;
   }
 }

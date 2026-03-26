@@ -513,7 +513,19 @@
   .counters-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .hero-inner {
+    width: 100%;
+  }
 }
+
+@media(max-width:765px){
+    body .counters-grid{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 600px) {
   .hero {
     padding: 100px 1.25rem 60px;
