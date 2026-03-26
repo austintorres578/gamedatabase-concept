@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDB — Sign Up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body>
+<header class="site-header scrolled" id="siteHeader">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span></a>
+    <nav class="nav-links"><a href="index.html" class="nav-link">Home</a><a href="search.html" class="nav-link">Search</a></nav>
+    <div class="nav-actions"><a href="signin.html" class="btn-ghost-sm">Sign in</a></div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav"><a href="index.html" class="nav-link">Home</a><a href="search.html" class="nav-link">Search</a></nav>
+
+<main class="auth-shell">
+  <div class="auth-bg"><div class="auth-glow-1"></div><div class="auth-glow-2"></div></div>
+  <div class="auth-card">
+    <div class="auth-logo-wrap"><span class="logo-icon" style="font-size:2rem">◈</span></div>
+    <div class="auth-header"><h1>Create your account</h1><p>Free forever. No credit card required.</p></div>
+    <form class="auth-form" id="signupForm" onsubmit="handleSignUp(event)">
+      <div class="auth-field">
+        <label class="auth-label">Username</label>
+        <input class="auth-input" type="text" id="username" placeholder="GamerTag42">
+        <span class="auth-error-msg" id="userErr">Username must be at least 3 characters</span>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Email</label>
+        <input class="auth-input" type="email" id="email" placeholder="you@example.com">
+        <span class="auth-error-msg" id="emailErr">Please enter a valid email</span>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Password</label>
+        <input class="auth-input" type="password" id="password" placeholder="At least 8 characters" oninput="checkStrength(this.value)">
+        <div class="password-strength"><div class="password-strength-bar" id="strengthBar"></div></div>
+        <span class="auth-error-msg" id="passErr">Password must be at least 8 characters</span>
+      </div>
+      <div class="auth-field">
+        <label class="auth-label">Confirm password</label>
+        <input class="auth-input" type="password" id="confirm" placeholder="Repeat your password">
+        <span class="auth-error-msg" id="confirmErr">Passwords do not match</span>
+      </div>
+      <button type="submit" class="btn-accent" id="submitBtn" style="width:100%;margin-top:0.25rem">Create free account</button>
+    </form>
+    <p class="auth-footer">Already have an account? <a href="signin.html" class="auth-link">Sign in →</a></p>
+  </div>
+</main>
+
+<script src="shared.js"></script>
+<script>
+function checkStrength(val) {
+  const bar = document.getElementById('strengthBar');
+  let score = 0;
+  if (val.length >= 8) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const pct = (score / 4) * 100;
+  bar.style.width = pct + '%';
+  bar.className = 'password-strength-bar ' + (score <= 1 ? 'strength-weak' : score <= 2 ? 'strength-ok' : 'strength-strong');
+}
+
+function handleSignUp(e) {
+  e.preventDefault();
+  const fields = {
+    username: document.getElementById('username'),
+    email: document.getElementById('email'),
+    password: document.getElementById('password'),
+    confirm: document.getElementById('confirm')
+  };
+  const errs = { username: document.getElementById('userErr'), email: document.getElementById('emailErr'), pass: document.getElementById('passErr'), confirm: document.getElementById('confirmErr') };
+  let valid = true;
+  Object.values(fields).forEach(f => f.classList.remove('error'));
+  Object.values(errs).forEach(e => e.classList.remove('show'));
+
+  if (!fields.username.value || fields.username.value.length < 3) {
+    fields.username.classList.add('error'); errs.username.classList.add('show'); valid = false;
+  }
+  if (!fields.email.value.includes('@')) {
+    fields.email.classList.add('error'); errs.email.classList.add('show'); valid = false;
+  }
+  if (fields.password.value.length < 8) {
+    fields.password.classList.add('error'); errs.pass.classList.add('show'); valid = false;
+  }
+  if (fields.confirm.value !== fields.password.value) {
+    fields.confirm.classList.add('error'); errs.confirm.classList.add('show'); valid = false;
+  }
+  if (!valid) return;
+
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Creating account…'; btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Create free account'; btn.disabled = false;
+    GameDB.toast('Account created! 🎉', 'Welcome to GameDB', 'success');
+    setTimeout(() => { window.location.href = 'profile.html'; }, 1000);
+  }, 1400);
+}
+</script>
+</body>
+</html>

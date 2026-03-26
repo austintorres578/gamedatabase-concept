@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDB — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="search.html" class="nav-link">Search</a>
+      <a href="game.html" class="nav-link">Game Page</a>
+      <a href="profile.html" class="nav-link">Profile</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="signin.html" class="btn-ghost-sm">Log in</a>
+      <a href="signup.html" class="btn-accent-sm">Sign up</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="nav-link active">Home</a>
+  <a href="search.html" class="nav-link">Search</a>
+  <a href="game.html" class="nav-link">Game Page</a>
+  <a href="profile.html" class="nav-link">Profile</a>
+  <a href="signin.html" class="nav-link">Log in</a>
+  <a href="signup.html" class="nav-link">Sign up</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-noise"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Video Game Backlog Tracker</div>
+    <h1 class="hero-title">Find your next<br>game to play.</h1>
+    <p class="hero-sub">Search 500,000+ titles across every platform. Track your backlog, rate what you've finished, and never lose your place in a series again.</p>
+    <div class="hero-cta-row">
+      <a href="search.html" class="btn-accent">Start Searching</a>
+      <a href="signup.html" class="btn-outline">Create free account →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="stat-num">500k+</span><span class="stat-lbl">Games</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><span class="stat-num">All</span><span class="stat-lbl">Platforms</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><span class="stat-num">Free</span><span class="stat-lbl">Forever</span></div>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="float-card fc-1" onclick="GameDB.toast('Added to Library','Baldur\'s Gate 3 saved!','success')">
+      <div class="fc-img"><svg viewBox="0 0 80 110" fill="none"><rect width="80" height="110" fill="url(#g1)"/><defs><linearGradient id="g1" x1="0" y1="0" x2="80" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#1e1b4b"/></linearGradient></defs><text x="40" y="60" font-size="36" text-anchor="middle" fill="rgba(255,255,255,0.15)">◈</text></svg></div>
+      <div class="fc-body"><div class="fc-title">Baldur's Gate 3</div><div class="fc-meta">RPG · <span class="fc-score">96</span></div></div>
+    </div>
+    <div class="float-card fc-2" onclick="GameDB.toast('Added to Library','Red Dead Redemption 2 saved!','success')">
+      <div class="fc-img"><svg viewBox="0 0 80 110" fill="none"><rect width="80" height="110" fill="url(#g2)"/><defs><linearGradient id="g2" x1="0" y1="0" x2="80" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#1c0a00"/></linearGradient></defs><text x="40" y="60" font-size="36" text-anchor="middle" fill="rgba(255,255,255,0.15)">◈</text></svg></div>
+      <div class="fc-body"><div class="fc-title">Red Dead Redemption 2</div><div class="fc-meta">Action · <span class="fc-score">97</span></div></div>
+    </div>
+    <div class="float-card fc-3" onclick="GameDB.toast('Added to Library','The Last of Us II saved!','success')">
+      <div class="fc-img"><svg viewBox="0 0 80 110" fill="none"><rect width="80" height="110" fill="url(#g3)"/><defs><linearGradient id="g3" x1="0" y1="0" x2="80" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#065f46"/><stop offset="1" stop-color="#022c22"/></linearGradient></defs><text x="40" y="60" font-size="36" text-anchor="middle" fill="rgba(255,255,255,0.15)">◈</text></svg></div>
+      <div class="fc-body"><div class="fc-title">The Last of Us Part II</div><div class="fc-meta">Adventure · <span class="fc-score">93</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-section">
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ticker-item"><span class="ticker-dot"></span>Action</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>RPG</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Open World</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Indie</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Adventure</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Strategy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Shooter</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Platformer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Horror</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Co-op</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Racing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Roguelike</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="ticker-dot"></span>Action</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>RPG</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Open World</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Indie</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Adventure</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Strategy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Shooter</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Platformer</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Horror</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Co-op</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Racing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Roguelike</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="section-inner">
+    <div class="section-label reveal">What you get</div>
+    <h2 class="section-title reveal delay-1">Everything in one place</h2>
+    <div class="features-grid">
+      <div class="feature-card reveal delay-1"><div class="feature-icon">⌕</div><h3>Powerful Search</h3><p>Filter by platform, genre, release year, Metacritic score, and custom tags.</p></div>
+      <div class="feature-card reveal delay-2"><div class="feature-icon">◫</div><h3>Personal Library</h3><p>Track playing, backlogged, and beaten games. Organise into custom groups.</p></div>
+      <div class="feature-card reveal delay-3"><div class="feature-icon">◎</div><h3>Rich Game Pages</h3><p>Cover art, screenshots, ratings, store links and full release details.</p></div>
+      <div class="feature-card reveal delay-4"><div class="feature-icon">◇</div><h3>User Profiles</h3><p>Showcase favourites, share library stats, and track your accomplishments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<section class="counters-section">
+  <div class="section-inner">
+    <div class="section-label reveal">By the numbers</div>
+    <h2 class="section-title reveal delay-1">Built for serious gamers</h2>
+    <div class="counters-grid reveal delay-2">
+      <div class="counter-cell"><div class="counter-num" data-target="500000" data-suffix="+" id="c1">0</div><div class="counter-lbl">Games in database</div></div>
+      <div class="counter-cell"><div class="counter-num" data-target="50" data-suffix="+" id="c2">0</div><div class="counter-lbl">Platforms supported</div></div>
+      <div class="counter-cell"><div class="counter-num" data-target="30" data-suffix="+" id="c3">0</div><div class="counter-lbl">Genres covered</div></div>
+      <div class="counter-cell"><div class="counter-num" data-target="100" data-suffix="% Free" id="c4">0</div><div class="counter-lbl">No paywalls ever</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREVIEW -->
+<section class="preview-section">
+  <div class="section-inner preview-grid">
+    <div class="preview-text reveal-left">
+      <div class="section-label">Game pages</div>
+      <h2 class="section-title" style="max-width:380px;">See your games the way they deserve</h2>
+      <p class="preview-body">Every game has a dedicated page with cover art, screenshots, community scores, developer info, and every available store link.</p>
+      <ul class="preview-list">
+        <li>Metacritic & community ratings</li>
+        <li>Full screenshot gallery</li>
+        <li>Store price comparison links</li>
+        <li>Genre & tag browsing</li>
+      </ul>
+      <a href="game.html" class="btn-outline">View sample game page →</a>
+    </div>
+    <div class="preview-mockup reveal-right">
+      <div class="mockup-card">
+        <div class="mockup-cover">
+          <svg viewBox="0 0 260 180" fill="none"><rect width="260" height="180" fill="#030712"/><rect x="20" y="20" width="70" height="95" rx="6" fill="url(#mg1)"/><defs><linearGradient id="mg1" x1="20" y1="20" x2="90" y2="115" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#1c0a00"/></linearGradient></defs><text x="55" y="72" font-size="28" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="serif">◈</text><rect x="108" y="20" width="132" height="12" rx="3" fill="rgba(255,255,255,0.85)"/><rect x="108" y="40" width="80" height="8" rx="3" fill="rgba(255,255,255,0.3)"/><rect x="108" y="56" width="50" height="20" rx="10" fill="rgba(34,197,94,0.85)"/><text x="133" y="70" font-size="9" text-anchor="middle" fill="#022c22" font-weight="700" font-family="sans-serif">97 / 100</text><rect x="108" y="84" width="40" height="8" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/><rect x="155" y="84" width="45" height="8" rx="2" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="0.5"/><rect x="20" y="128" width="220" height="8" rx="3" fill="rgba(255,255,255,0.08)"/><rect x="20" y="144" width="160" height="8" rx="3" fill="rgba(255,255,255,0.08)"/><rect x="20" y="160" width="100" height="8" rx="3" fill="rgba(255,255,255,0.05)"/></svg>
+        </div>
+        <div class="mockup-label">Red Dead Redemption 2</div>
+        <div class="mockup-meta">Action · Rockstar Games · 2018</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="cta-glow"></div>
+    <h2>Ready to clean up your backlog?</h2>
+    <p>Free to use. No credit card required.</p>
+    <div class="cta-btn-row">
+      <a href="search.html" class="btn-accent">Search games</a>
+      <a href="signup.html" class="btn-outline">Create free account →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span><p class="footer-tagline">Your personal video game companion.</p></div>
+    <div class="footer-cols">
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="search.html">Search</a><a href="game.html">Game Page</a><a href="profile.html">Profile</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="signin.html">Sign in</a><a href="signup.html">Sign up</a></div>
+      <div class="footer-col"><h4>Popular Tags</h4><div class="footer-tags"><span class="ftag">Action</span><span class="ftag">RPG</span><span class="ftag">Shooter</span><span class="ftag">Adventure</span><span class="ftag">Indie</span><span class="ftag">Strategy</span><span class="ftag">Co-op</span><span class="ftag">Racing</span></div></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 GameDB. All rights reserved.</span></div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// Counter animation triggered on scroll
+const counters = document.querySelectorAll('.counter-num[data-target]');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      GameDB.animateCounter(el, target, suffix);
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObs.observe(c));
+
+// Float cards: click = toast already handled inline
+</script>
+</body>
+</html>

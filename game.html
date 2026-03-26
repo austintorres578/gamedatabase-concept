@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDB — Red Dead Redemption 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="gamepage.css">
+</head>
+<body>
+
+<header class="site-header scrolled" id="siteHeader">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="search.html" class="nav-link">Search</a>
+      <a href="game.html" class="nav-link active">Game Page</a>
+      <a href="profile.html" class="nav-link">Profile</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="signin.html" class="btn-ghost-sm">Log in</a>
+      <a href="signup.html" class="btn-accent-sm">Sign up</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="search.html" class="nav-link">Search</a>
+  <a href="game.html" class="nav-link active">Game Page</a>
+  <a href="profile.html" class="nav-link">Profile</a>
+</nav>
+
+<div class="game-backdrop"><div class="backdrop-gradient"></div></div>
+
+<main class="game-shell">
+  <div class="game-container">
+
+    <div class="breadcrumb reveal"><a href="search.html">← Back to results</a></div>
+
+    <div class="game-hero reveal">
+      <div class="cover-col">
+        <div class="cover-wrap">
+          <div class="cover-art" id="coverArt">
+            <svg viewBox="0 0 240 320" fill="none"><rect width="240" height="320" fill="url(#covgrad)"/><defs><linearGradient id="covgrad" x1="0" y1="0" x2="240" y2="320" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="0.5" stop-color="#78350f"/><stop offset="1" stop-color="#0c0400"/></linearGradient></defs><circle cx="120" cy="140" r="60" fill="rgba(255,200,80,0.06)"/><text x="120" y="155" font-size="64" text-anchor="middle" fill="rgba(255,200,80,0.18)" font-family="serif">◈</text><text x="120" y="295" font-size="11" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-family="sans-serif" font-weight="600" letter-spacing="2">ROCKSTAR GAMES</text></svg>
+          </div>
+          <div class="platform-tags"><span class="platform-tag">PS5</span><span class="platform-tag">Xbox</span><span class="platform-tag">PC</span></div>
+        </div>
+        <div class="store-section">
+          <h3 class="store-title">Available on</h3>
+          <div class="store-pills">
+            <a href="#" class="store-pill" onclick="storeClick(event,'Steam')">Steam</a>
+            <a href="#" class="store-pill" onclick="storeClick(event,'Epic Games')">Epic Games</a>
+            <a href="#" class="store-pill" onclick="storeClick(event,'PlayStation Store')">PlayStation Store</a>
+            <a href="#" class="store-pill" onclick="storeClick(event,'Xbox Store')">Xbox Store</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-col">
+        <div class="genre-tags"><span class="genre-tag">Action</span><span class="genre-tag">Open World</span><span class="genre-tag">Western</span></div>
+        <div class="game-title-row">
+          <h1 class="game-title">Red Dead Redemption 2</h1>
+          <span class="game-year">2018</span>
+        </div>
+        <div class="score-row">
+          <div class="metascore"><span class="score-num" id="scoreNum">0</span><span class="score-label">Metacritic</span></div>
+          <div class="score-divider"></div>
+          <div class="user-score"><span class="score-num score-user" id="userScoreNum">0.0</span><span class="score-label">User Score</span></div>
+        </div>
+        <p class="game-description">America, 1899. The end of the wild west era has begun as lawmen hunt down the last remaining outlaw gangs. After a robbery goes badly wrong, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and bounty hunters closing in, the gang must rob, steal, and fight their way across the rugged heartland of America.</p>
+        <div class="library-actions">
+          <button class="lib-btn lib-btn-primary" id="libBtn" onclick="toggleLibrary()">+ Add to Library</button>
+          <button class="lib-btn lib-btn-secondary" id="favBtn" onclick="toggleFavorite()">☆ Favourite</button>
+          <button class="lib-btn lib-btn-secondary" id="compBtn" onclick="toggleCompleted()">○ Completed</button>
+        </div>
+        <div class="group-assign">
+          <select class="group-select" onchange="assignGroup(this)">
+            <option value="">Add to a group…</option>
+            <option>Currently Playing</option>
+            <option>Backlog</option>
+            <option>Wishlist</option>
+            <option>Favourites</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-row">
+      <div class="main-content">
+        <div class="screenshots-section reveal">
+          <h2 class="content-heading">Screenshots</h2>
+          <div class="screenshots-row" id="screenshotsRow">
+            <div class="screenshot-thumb" onclick="openLightbox(0)"><svg viewBox="0 0 320 180" fill="none"><rect width="320" height="180" fill="url(#s1)"/><defs><linearGradient id="s1" x1="0" y1="0" x2="320" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#1c0a00"/><stop offset="1" stop-color="#b45309" stop-opacity="0.4"/></linearGradient></defs><text x="160" y="100" font-size="40" text-anchor="middle" fill="rgba(255,200,80,0.12)" font-family="serif">▶</text></svg><div class="ss-overlay"><span>View</span></div></div>
+            <div class="screenshot-thumb" onclick="openLightbox(1)"><svg viewBox="0 0 320 180" fill="none"><rect width="320" height="180" fill="url(#s2)"/><defs><linearGradient id="s2" x1="320" y1="0" x2="0" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#1c0500"/><stop offset="1" stop-color="#92400e" stop-opacity="0.5"/></linearGradient></defs><text x="160" y="100" font-size="40" text-anchor="middle" fill="rgba(255,200,80,0.12)" font-family="serif">▶</text></svg><div class="ss-overlay"><span>View</span></div></div>
+            <div class="screenshot-thumb" onclick="openLightbox(2)"><svg viewBox="0 0 320 180" fill="none"><rect width="320" height="180" fill="url(#s3)"/><defs><linearGradient id="s3" x1="0" y1="180" x2="320" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#0a0400"/><stop offset="1" stop-color="#78350f" stop-opacity="0.6"/></linearGradient></defs><text x="160" y="100" font-size="40" text-anchor="middle" fill="rgba(255,200,80,0.12)" font-family="serif">▶</text></svg><div class="ss-overlay"><span>View</span></div></div>
+            <div class="screenshot-thumb" onclick="openLightbox(3)"><svg viewBox="0 0 320 180" fill="none"><rect width="320" height="180" fill="url(#s4)"/><defs><linearGradient id="s4" x1="160" y1="0" x2="160" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#1c0900"/><stop offset="1" stop-color="#b45309" stop-opacity="0.3"/></linearGradient></defs><text x="160" y="100" font-size="40" text-anchor="middle" fill="rgba(255,200,80,0.12)" font-family="serif">▶</text></svg><div class="ss-overlay"><span>View</span></div></div>
+          </div>
+        </div>
+
+        <!-- SIMILAR GAMES -->
+        <div class="similar-section reveal">
+          <h2 class="content-heading">You might also like</h2>
+          <div class="similar-row">
+            <a href="game.html" class="similar-card"><svg viewBox="0 0 120 80" fill="none"><rect width="120" height="80" fill="url(#sm1)"/><defs><linearGradient id="sm1" x1="0" y1="0" x2="120" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#134e4a"/><stop offset="1" stop-color="#020f0c"/></linearGradient></defs></svg><div class="similar-info"><div class="similar-title">The Witcher 3</div><div class="similar-meta">RPG · 93</div></div></a>
+            <a href="game.html" class="similar-card"><svg viewBox="0 0 120 80" fill="none"><rect width="120" height="80" fill="url(#sm2)"/><defs><linearGradient id="sm2" x1="0" y1="0" x2="120" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#1e3a5f"/><stop offset="1" stop-color="#060c14"/></linearGradient></defs></svg><div class="similar-info"><div class="similar-title">God of War</div><div class="similar-meta">Action · 94</div></div></a>
+            <a href="game.html" class="similar-card"><svg viewBox="0 0 120 80" fill="none"><rect width="120" height="80" fill="url(#sm3)"/><defs><linearGradient id="sm3" x1="0" y1="0" x2="120" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#4c1d95"/><stop offset="1" stop-color="#0c0820"/></linearGradient></defs></svg><div class="similar-info"><div class="similar-title">Baldur's Gate 3</div><div class="similar-meta">RPG · 96</div></div></a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="game-sidebar reveal">
+        <div class="sidebar-panel">
+          <h3 class="panel-title">Game details</h3>
+          <div class="detail-grid">
+            <div class="detail-item"><span class="detail-label">Release date</span><span class="detail-value">Oct 26, 2018</span></div>
+            <div class="detail-item"><span class="detail-label">Developer</span><span class="detail-value">Rockstar Games</span></div>
+            <div class="detail-item"><span class="detail-label">Publisher</span><span class="detail-value">Rockstar Games</span></div>
+            <div class="detail-item"><span class="detail-label">Age rating</span><span class="detail-value">M (Mature)</span></div>
+            <div class="detail-item"><span class="detail-label">Avg. playtime</span><span class="detail-value">~50 hours</span></div>
+          </div>
+        </div>
+        <div class="sidebar-panel">
+          <h3 class="panel-title">Tags</h3>
+          <div class="tags-cloud">
+            <a href="search.html" class="tag-pill">Open World</a>
+            <a href="search.html" class="tag-pill">Western</a>
+            <a href="search.html" class="tag-pill">Story Rich</a>
+            <a href="search.html" class="tag-pill">Third Person</a>
+            <a href="search.html" class="tag-pill">Action</a>
+            <a href="search.html" class="tag-pill">Sandbox</a>
+            <a href="search.html" class="tag-pill">Crime</a>
+            <a href="search.html" class="tag-pill">Atmospheric</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+  <div class="lightbox-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-nav lb-prev" onclick="navLightbox(-1)">‹</button>
+    <div class="lightbox-img" id="lightboxImg"></div>
+    <button class="lb-nav lb-next" onclick="navLightbox(1)">›</button>
+    <p class="lightbox-counter" id="lightboxCounter">1 / 4</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span><p class="footer-tagline">Your personal video game companion.</p></div>
+    <div class="footer-cols">
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="search.html">Search</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="signin.html">Sign in</a><a href="signup.html">Sign up</a></div>
+      <div class="footer-col"><h4>Tags</h4><div class="footer-tags"><span class="ftag">Action</span><span class="ftag">RPG</span><span class="ftag">Adventure</span></div></div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 GameDB. All rights reserved.</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+const screenshots = [
+  `<svg viewBox="0 0 800 450" fill="none"><rect width="800" height="450" fill="url(#lb0)"/><defs><linearGradient id="lb0" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#1c0900"/><stop offset="1" stop-color="#b45309" stop-opacity="0.35"/></linearGradient></defs><text x="400" y="240" font-size="64" text-anchor="middle" fill="rgba(255,200,80,0.1)" font-family="serif">◈</text><text x="400" y="420" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="sans-serif">Screenshot 1 — Open Plains</text></svg>`,
+  `<svg viewBox="0 0 800 450" fill="none"><rect width="800" height="450" fill="url(#lb1)"/><defs><linearGradient id="lb1" x1="800" y1="0" x2="0" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#1c0500"/><stop offset="1" stop-color="#92400e" stop-opacity="0.5"/></linearGradient></defs><text x="400" y="240" font-size="64" text-anchor="middle" fill="rgba(255,200,80,0.1)" font-family="serif">◈</text><text x="400" y="420" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="sans-serif">Screenshot 2 — Campfire</text></svg>`,
+  `<svg viewBox="0 0 800 450" fill="none"><rect width="800" height="450" fill="url(#lb2)"/><defs><linearGradient id="lb2" x1="0" y1="450" x2="800" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#0a0400"/><stop offset="1" stop-color="#78350f" stop-opacity="0.6"/></linearGradient></defs><text x="400" y="240" font-size="64" text-anchor="middle" fill="rgba(255,200,80,0.1)" font-family="serif">◈</text><text x="400" y="420" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="sans-serif">Screenshot 3 — Town</text></svg>`,
+  `<svg viewBox="0 0 800 450" fill="none"><rect width="800" height="450" fill="url(#lb3)"/><defs><linearGradient id="lb3" x1="400" y1="0" x2="400" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#1c0900"/><stop offset="1" stop-color="#b45309" stop-opacity="0.3"/></linearGradient></defs><text x="400" y="240" font-size="64" text-anchor="middle" fill="rgba(255,200,80,0.1)" font-family="serif">◈</text><text x="400" y="420" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="sans-serif">Screenshot 4 — Sunset</text></svg>`,
+];
+let currentLb = 0;
+
+function openLightbox(idx) {
+  currentLb = idx;
+  updateLightbox();
+  const lb = document.getElementById('lightbox');
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function navLightbox(dir) {
+  currentLb = (currentLb + dir + screenshots.length) % screenshots.length;
+  const img = document.getElementById('lightboxImg');
+  img.style.opacity = '0';
+  setTimeout(() => { updateLightbox(); img.style.opacity = '1'; }, 150);
+}
+function updateLightbox() {
+  document.getElementById('lightboxImg').innerHTML = screenshots[currentLb];
+  document.getElementById('lightboxCounter').textContent = (currentLb + 1) + ' / ' + screenshots.length;
+}
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowRight') navLightbox(1);
+  if (e.key === 'ArrowLeft') navLightbox(-1);
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// Library state
+let libState = { library: false, favorite: false, completed: false };
+function toggleLibrary() {
+  libState.library = !libState.library;
+  const btn = document.getElementById('libBtn');
+  btn.textContent = libState.library ? '✓ In Library' : '+ Add to Library';
+  btn.classList.toggle('lib-active', libState.library);
+  GameDB.toast(libState.library ? 'Added!' : 'Removed', `Red Dead Redemption 2 ${libState.library ? 'added to' : 'removed from'} your library`, libState.library ? 'success' : 'info');
+}
+function toggleFavorite() {
+  libState.favorite = !libState.favorite;
+  const btn = document.getElementById('favBtn');
+  btn.textContent = libState.favorite ? '★ Favourited' : '☆ Favourite';
+  btn.classList.toggle('lib-active', libState.favorite);
+  GameDB.toast(libState.favorite ? 'Favourited!' : 'Unfavourited', 'Red Dead Redemption 2', libState.favorite ? 'success' : 'info');
+}
+function toggleCompleted() {
+  libState.completed = !libState.completed;
+  const btn = document.getElementById('compBtn');
+  btn.textContent = libState.completed ? '✓ Completed' : '○ Completed';
+  btn.classList.toggle('lib-active', libState.completed);
+  GameDB.toast(libState.completed ? 'Marked complete! 🎉' : 'Unmarked', 'Red Dead Redemption 2', libState.completed ? 'success' : 'info');
+}
+function assignGroup(sel) {
+  if (!sel.value) return;
+  GameDB.toast('Group assigned', `Added to "${sel.value}"`, 'success');
+  setTimeout(() => { sel.value = ''; }, 1200);
+}
+function storeClick(e, name) {
+  e.preventDefault();
+  GameDB.toast('Opening store', `Redirecting to ${name}…`, 'info');
+}
+
+// Animate scores on scroll
+const scoreObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    GameDB.animateCounter(document.getElementById('scoreNum'), 97, '');
+    // user score special
+    const el = document.getElementById('userScoreNum');
+    let s = null;
+    const anim = (ts) => { if (!s) s = ts; const p = Math.min((ts-s)/1200,1); const v = (8.4 * (1-Math.pow(1-p,3))); el.textContent = v.toFixed(1); if (p<1) requestAnimationFrame(anim); };
+    requestAnimationFrame(anim);
+    scoreObs.disconnect();
+  }
+}, { threshold: 0.5 });
+scoreObs.observe(document.getElementById('scoreNum'));
+</script>
+</body>
+</html>

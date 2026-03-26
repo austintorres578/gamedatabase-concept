@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDB — Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="search.css">
+</head>
+<body>
+
+<header class="site-header scrolled" id="siteHeader">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="search.html" class="nav-link active">Search</a>
+      <a href="game.html" class="nav-link">Game Page</a>
+      <a href="profile.html" class="nav-link">Profile</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="signin.html" class="btn-ghost-sm">Log in</a>
+      <a href="signup.html" class="btn-accent-sm">Sign up</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="search.html" class="nav-link active">Search</a>
+  <a href="game.html" class="nav-link">Game Page</a>
+  <a href="profile.html" class="nav-link">Profile</a>
+</nav>
+
+<main class="search-shell">
+  <div class="search-header">
+    <h1 class="search-title">Find Your Next Game</h1>
+    <p class="search-subtitle">Search thousands of titles across all platforms.</p>
+    <div class="searchbar-wrap">
+      <div class="searchbar">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search by game title…">
+        <button class="search-submit" id="searchBtn" onclick="doSearch()">Search</button>
+      </div>
+    </div>
+    <div class="filters-row">
+      <div class="filter-group">
+        <button class="filter-toggle" id="platformToggle" onclick="toggleFilter('platform')">Platform <span class="filter-toggle-badge active-badge" id="platformBadge">All</span><svg class="toggle-chevron" id="platformChevron" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="filter-dropdown hidden" id="platformDropdown">
+          <button class="filter-chip active-chip" data-value="all" onclick="selectFilter('platform','all',this)">All Platforms</button>
+          <button class="filter-chip" data-value="PC" onclick="selectFilter('platform','PC',this)">PC</button>
+          <button class="filter-chip" data-value="PlayStation" onclick="selectFilter('platform','PlayStation',this)">PlayStation</button>
+          <button class="filter-chip" data-value="Xbox" onclick="selectFilter('platform','Xbox',this)">Xbox</button>
+          <button class="filter-chip" data-value="Nintendo Switch" onclick="selectFilter('platform','Nintendo Switch',this)">Nintendo Switch</button>
+          <button class="filter-chip" data-value="iOS" onclick="selectFilter('platform','iOS',this)">iOS</button>
+          <button class="filter-chip" data-value="Android" onclick="selectFilter('platform','Android',this)">Android</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <button class="filter-toggle" id="genreToggle" onclick="toggleFilter('genre')">Genre <span class="filter-toggle-badge active-badge" id="genreBadge">All</span><svg class="toggle-chevron" id="genreChevron" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="filter-dropdown hidden" id="genreDropdown">
+          <button class="filter-chip active-chip" data-value="all" onclick="selectFilter('genre','all',this)">All Genres</button>
+          <button class="filter-chip" data-value="RPG" onclick="selectFilter('genre','RPG',this)">RPG</button>
+          <button class="filter-chip" data-value="Action" onclick="selectFilter('genre','Action',this)">Action</button>
+          <button class="filter-chip" data-value="Adventure" onclick="selectFilter('genre','Adventure',this)">Adventure</button>
+          <button class="filter-chip" data-value="Shooter" onclick="selectFilter('genre','Shooter',this)">Shooter</button>
+          <button class="filter-chip" data-value="Strategy" onclick="selectFilter('genre','Strategy',this)">Strategy</button>
+          <button class="filter-chip" data-value="Simulation" onclick="selectFilter('genre','Simulation',this)">Simulation</button>
+          <button class="filter-chip" data-value="Indie" onclick="selectFilter('genre','Indie',this)">Indie</button>
+          <button class="filter-chip" data-value="Platformer" onclick="selectFilter('genre','Platformer',this)">Platformer</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <button class="filter-toggle" id="tagToggle" onclick="toggleFilter('tag')">Tags <span class="filter-toggle-badge active-badge" id="tagBadge">All</span><svg class="toggle-chevron" id="tagChevron" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="filter-dropdown hidden" id="tagDropdown">
+          <button class="filter-chip active-chip" data-value="all" onclick="selectFilter('tag','all',this)">All Tags</button>
+          <button class="filter-chip" data-value="Open World" onclick="selectFilter('tag','Open World',this)">Open World</button>
+          <button class="filter-chip" data-value="Co-op" onclick="selectFilter('tag','Co-op',this)">Co-op</button>
+          <button class="filter-chip" data-value="Multiplayer" onclick="selectFilter('tag','Multiplayer',this)">Multiplayer</button>
+          <button class="filter-chip" data-value="Story Rich" onclick="selectFilter('tag','Story Rich',this)">Story Rich</button>
+          <button class="filter-chip" data-value="Horror" onclick="selectFilter('tag','Horror',this)">Horror</button>
+          <button class="filter-chip" data-value="Puzzle" onclick="selectFilter('tag','Puzzle',this)">Puzzle</button>
+        </div>
+      </div>
+      <button class="reset-btn" onclick="resetSearch()">Reset</button>
+    </div>
+  </div>
+
+  <div class="results-meta section-inner" id="resultsMeta" style="display:none">
+    <span class="results-count" id="resultsCount"></span>
+    <span class="results-page" id="resultsPageLabel"></span>
+  </div>
+
+  <div class="section-inner" id="skeletonGrid" style="display:none">
+    <div class="skeleton-grid">
+      <div class="skeleton-card"><div class="skeleton-img skeleton"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img skeleton"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img skeleton"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img skeleton"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img skeleton"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img skeleton"></div><div class="skeleton-body"><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line short"></div></div></div>
+    </div>
+  </div>
+
+  <div class="game-grid section-inner" id="gameGrid"></div>
+  <div id="emptyState" style="display:none" class="empty-state section-inner"><div class="empty-icon">◈</div><h3>No games found</h3><p>Try a different search term or reset your filters.</p></div>
+  <div class="pagination section-inner" id="pagination" style="display:none">
+    <button class="page-btn page-prev" id="prevBtn" onclick="changePage(-1)">← Prev</button>
+    <div class="page-numbers" id="pageNumbers"></div>
+    <button class="page-btn page-next" id="nextBtn" onclick="changePage(1)">Next →</button>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span><p class="footer-tagline">Your personal video game companion.</p></div>
+    <div class="footer-cols">
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="search.html">Search</a><a href="game.html">Game Page</a><a href="profile.html">Profile</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="signin.html">Sign in</a><a href="signup.html">Sign up</a></div>
+      <div class="footer-col"><h4>Popular Tags</h4><div class="footer-tags"><span class="ftag" onclick="quickTag('Action')">Action</span><span class="ftag" onclick="quickTag('RPG')">RPG</span><span class="ftag" onclick="quickTag('Shooter')">Shooter</span><span class="ftag" onclick="quickTag('Adventure')">Adventure</span><span class="ftag" onclick="quickTag('Indie')">Indie</span><span class="ftag" onclick="quickTag('Strategy')">Strategy</span></div></div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 GameDB. All rights reserved.</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ---- DATA ----
+const ALL_GAMES = [
+  { id:1, title:"Red Dead Redemption 2", genre:"Action", platform:"PlayStation", tag:"Open World", score:97, year:2018, gradient:["#b45309","#1c0a00"] },
+  { id:2, title:"Baldur's Gate 3", genre:"RPG", platform:"PC", tag:"Co-op", score:96, year:2023, gradient:["#4c1d95","#0c0820"] },
+  { id:3, title:"Elden Ring", genre:"Action", platform:"PlayStation", tag:"Open World", score:96, year:2022, gradient:["#78350f","#0a0200"] },
+  { id:4, title:"The Last of Us Part II", genre:"Adventure", platform:"PlayStation", tag:"Story Rich", score:93, year:2020, gradient:["#065f46","#011c16"] },
+  { id:5, title:"God of War", genre:"Action", platform:"PlayStation", tag:"Story Rich", score:94, year:2018, gradient:["#1e3a5f","#060c14"] },
+  { id:6, title:"The Witcher 3: Wild Hunt", genre:"RPG", platform:"PC", tag:"Open World", score:93, year:2015, gradient:["#134e4a","#020f0c"] },
+  { id:7, title:"Hades", genre:"RPG", platform:"PC", tag:"Co-op", score:93, year:2020, gradient:["#7f1d1d","#1a0008"] },
+  { id:8, title:"Disco Elysium", genre:"RPG", platform:"PC", tag:"Story Rich", score:91, year:2019, gradient:["#1e1b4b","#080714"] },
+  { id:9, title:"Celeste", genre:"Platformer", platform:"Nintendo Switch", tag:"Puzzle", score:94, year:2018, gradient:["#4338ca","#0c0a20"] },
+  { id:10, title:"Hollow Knight", genre:"Platformer", platform:"Nintendo Switch", tag:"Story Rich", score:87, year:2017, gradient:["#1f2937","#03070c"] },
+  { id:11, title:"Shadow of the Tomb Raider", genre:"Action", platform:"Xbox", tag:"Open World", score:82, year:2018, gradient:["#14532d","#020f07"] },
+  { id:12, title:"Control", genre:"Action", platform:"PlayStation", tag:"Story Rich", score:85, year:2019, gradient:["#312e81","#08060f"] },
+  { id:13, title:"Death Stranding", genre:"Adventure", platform:"PlayStation", tag:"Story Rich", score:82, year:2019, gradient:["#164e63","#020d10"] },
+  { id:14, title:"Sekiro: Shadows Die Twice", genre:"Action", platform:"PC", tag:"Story Rich", score:90, year:2019, gradient:["#3f3f46","#0a0a0a"] },
+  { id:15, title:"Mass Effect Legendary Edition", genre:"RPG", platform:"Xbox", tag:"Co-op", score:93, year:2021, gradient:["#1e3a5f","#03080f"] },
+  { id:16, title:"Doom Eternal", genre:"Shooter", platform:"PC", tag:"Multiplayer", score:88, year:2020, gradient:["#7f1d1d","#140203"] },
+  { id:17, title:"Ori and the Will of the Wisps", genre:"Platformer", platform:"Xbox", tag:"Story Rich", score:93, year:2020, gradient:["#1e3a8a","#020714"] },
+  { id:18, title:"Stardew Valley", genre:"Simulation", platform:"Nintendo Switch", tag:"Co-op", score:89, year:2016, gradient:["#14532d","#061408"] },
+  { id:19, title:"Cyberpunk 2077", genre:"RPG", platform:"PC", tag:"Open World", score:86, year:2020, gradient:["#fbbf24","#1a0a00"], textColor:"#1c0a00" },
+  { id:20, title:"Returnal", genre:"Shooter", platform:"PlayStation", tag:"Horror", score:86, year:2021, gradient:["#6b21a8","#0e0415"] },
+  { id:21, title:"Forza Horizon 5", genre:"Simulation", platform:"Xbox", tag:"Multiplayer", score:92, year:2021, gradient:["#b45309","#1c0800"] },
+  { id:22, title:"Resident Evil Village", genre:"Shooter", platform:"PlayStation", tag:"Horror", score:84, year:2021, gradient:["#292524","#050403"] },
+  { id:23, title:"It Takes Two", genre:"Adventure", platform:"PC", tag:"Co-op", score:94, year:2021, gradient:["#0369a1","#01090f"] },
+  { id:24, title:"Metroid Dread", genre:"Adventure", platform:"Nintendo Switch", tag:"Story Rich", score:89, year:2021, gradient:["#1e293b","#030710"] },
+];
+
+const PAGE_SIZE = 8;
+let currentPage = 1;
+let filteredGames = [...ALL_GAMES];
+let favorites = new Set();
+let filters = { platform: 'all', genre: 'all', tag: 'all' };
+let searchTerm = '';
+
+function getCardSVG(game) {
+  return `<svg viewBox="0 0 280 185" fill="none"><rect width="280" height="185" fill="url(#grd${game.id})"/><defs><linearGradient id="grd${game.id}" x1="0" y1="0" x2="280" y2="185" gradientUnits="userSpaceOnUse"><stop stop-color="${game.gradient[0]}"/><stop offset="1" stop-color="${game.gradient[1]}"/></linearGradient></defs><text x="140" y="100" font-size="56" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-family="serif">◈</text></svg>`;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('gameGrid');
+  const totalPages = Math.ceil(filteredGames.length / PAGE_SIZE);
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageGames = filteredGames.slice(start, start + PAGE_SIZE);
+
+  grid.innerHTML = '';
+  if (pageGames.length === 0) {
+    document.getElementById('emptyState').style.display = 'block';
+    document.getElementById('pagination').style.display = 'none';
+    document.getElementById('resultsMeta').style.display = 'none';
+    return;
+  }
+  document.getElementById('emptyState').style.display = 'none';
+
+  pageGames.forEach((game, i) => {
+    const isFav = favorites.has(game.id);
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <a href="game.html" style="text-decoration:none;display:block">
+        <div class="game-card-img">
+          ${getCardSVG(game)}
+          <div class="card-score">${game.score}</div>
+          <div class="card-favorite ${isFav ? 'active' : ''}" data-id="${game.id}" title="Favourite">♥</div>
+        </div>
+        <div class="game-card-body">
+          <div class="game-card-title">${game.title}</div>
+          <div class="game-card-meta">${game.genre} · ${game.year}</div>
+        </div>
+      </a>`;
+    card.querySelector('.card-favorite').addEventListener('click', e => {
+      e.preventDefault(); e.stopPropagation();
+      const id = game.id;
+      const btn = e.currentTarget;
+      if (favorites.has(id)) {
+        favorites.delete(id); btn.classList.remove('active');
+        GameDB.toast('Removed', `${game.title} removed from favourites`, 'info');
+      } else {
+        favorites.add(id); btn.classList.add('active');
+        GameDB.toast('Favourited!', `${game.title} added to favourites`, 'success');
+      }
+    });
+    grid.appendChild(card);
+  });
+
+  // Results meta
+  document.getElementById('resultsMeta').style.display = 'flex';
+  document.getElementById('resultsCount').innerHTML = `<strong>${filteredGames.length}</strong> game${filteredGames.length !== 1 ? 's' : ''} found`;
+  document.getElementById('resultsPageLabel').textContent = `Page ${currentPage} of ${totalPages}`;
+
+  // Pagination
+  if (totalPages > 1) {
+    document.getElementById('pagination').style.display = 'flex';
+    document.getElementById('prevBtn').disabled = currentPage === 1;
+    document.getElementById('nextBtn').disabled = currentPage === totalPages;
+    const nums = document.getElementById('pageNumbers');
+    nums.innerHTML = '';
+    for (let p = 1; p <= totalPages; p++) {
+      const btn = document.createElement('button');
+      btn.className = 'page-num' + (p === currentPage ? ' active' : '');
+      btn.textContent = p;
+      btn.onclick = () => goToPage(p);
+      nums.appendChild(btn);
+    }
+  } else {
+    document.getElementById('pagination').style.display = 'none';
+  }
+}
+
+function showSkeleton() {
+  document.getElementById('skeletonGrid').style.display = 'block';
+  document.getElementById('gameGrid').innerHTML = '';
+  document.getElementById('resultsMeta').style.display = 'none';
+  document.getElementById('pagination').style.display = 'none';
+  document.getElementById('emptyState').style.display = 'none';
+}
+
+function hideSkeleton() {
+  document.getElementById('skeletonGrid').style.display = 'none';
+}
+
+function applyFilters() {
+  const term = searchTerm.toLowerCase();
+  filteredGames = ALL_GAMES.filter(g => {
+    const matchSearch = !term || g.title.toLowerCase().includes(term);
+    const matchPlatform = filters.platform === 'all' || g.platform === filters.platform;
+    const matchGenre = filters.genre === 'all' || g.genre === filters.genre;
+    const matchTag = filters.tag === 'all' || g.tag === filters.tag;
+    return matchSearch && matchPlatform && matchGenre && matchTag;
+  });
+  currentPage = 1;
+}
+
+function doSearch() {
+  searchTerm = document.getElementById('searchInput').value.trim();
+  showSkeleton();
+  setTimeout(() => { hideSkeleton(); applyFilters(); renderGrid(); }, 600);
+}
+
+function changePage(dir) {
+  const totalPages = Math.ceil(filteredGames.length / PAGE_SIZE);
+  const next = currentPage + dir;
+  if (next < 1 || next > totalPages) return;
+  showSkeleton();
+  setTimeout(() => { hideSkeleton(); currentPage = next; renderGrid(); window.scrollTo({ top: 0, behavior: 'smooth' }); }, 400);
+}
+
+function goToPage(p) {
+  if (p === currentPage) return;
+  showSkeleton();
+  setTimeout(() => { hideSkeleton(); currentPage = p; renderGrid(); window.scrollTo({ top: 0, behavior: 'smooth' }); }, 400);
+}
+
+function resetSearch() {
+  searchTerm = '';
+  filters = { platform: 'all', genre: 'all', tag: 'all' };
+  document.getElementById('searchInput').value = '';
+  ['platform','genre','tag'].forEach(k => {
+    document.getElementById(k+'Badge').textContent = 'All';
+    const dropdown = document.getElementById(k+'Dropdown');
+    dropdown.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active-chip'));
+    dropdown.querySelector('[data-value="all"]').classList.add('active-chip');
+  });
+  applyFilters(); renderGrid();
+  GameDB.toast('Reset', 'All filters cleared', 'info');
+}
+
+function quickTag(tag) {
+  filters.tag = tag;
+  document.getElementById('tagBadge').textContent = tag;
+  document.getElementById('tagBadge').classList.remove('active-badge');
+  document.getElementById('tagDropdown').querySelectorAll('.filter-chip').forEach(c => {
+    c.classList.toggle('active-chip', c.dataset.value === tag);
+  });
+  applyFilters(); renderGrid();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// FILTER DROPDOWNS
+function toggleFilter(key) {
+  const dropdown = document.getElementById(key + 'Dropdown');
+  const chevron = document.getElementById(key + 'Chevron');
+  const isHidden = dropdown.classList.contains('hidden');
+  // close all first
+  ['platform','genre','tag'].forEach(k => {
+    document.getElementById(k+'Dropdown').classList.add('hidden');
+    document.getElementById(k+'Chevron').style.transform = '';
+  });
+  if (isHidden) {
+    dropdown.classList.remove('hidden');
+    dropdown.classList.add('animating');
+    dropdown.addEventListener('animationend', () => dropdown.classList.remove('animating'), { once: true });
+    chevron.style.transform = 'rotate(180deg)';
+  }
+}
+
+function selectFilter(key, value, btn) {
+  filters[key] = value;
+  const badge = document.getElementById(key + 'Badge');
+  badge.textContent = value === 'all' ? 'All' : value;
+  if (value === 'all') badge.classList.add('active-badge');
+  else badge.classList.remove('active-badge');
+  const dropdown = document.getElementById(key + 'Dropdown');
+  dropdown.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active-chip'));
+  btn.classList.add('active-chip');
+  applyFilters(); renderGrid();
+}
+
+// Close dropdowns on outside click
+document.addEventListener('click', e => {
+  if (!e.target.closest('.filter-group')) {
+    ['platform','genre','tag'].forEach(k => {
+      document.getElementById(k+'Dropdown').classList.add('hidden');
+      document.getElementById(k+'Chevron').style.transform = '';
+    });
+  }
+});
+
+// Enter key search
+document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+// Initial render
+applyFilters();
+renderGrid();
+</script>
+</body>
+</html>

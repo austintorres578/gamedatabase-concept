@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDB — Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<header class="site-header scrolled" id="siteHeader">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span></a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="search.html" class="nav-link">Search</a>
+      <a href="game.html" class="nav-link">Game Page</a>
+      <a href="profile.html" class="nav-link active">Profile</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="signin.html" class="btn-ghost-sm">Log in</a>
+      <a href="signup.html" class="btn-accent-sm">Sign up</a>
+    </div>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="search.html" class="nav-link">Search</a>
+  <a href="game.html" class="nav-link">Game Page</a>
+  <a href="profile.html" class="nav-link active">Profile</a>
+</nav>
+
+<div class="profile-bg"><div class="pb-glow-1"></div><div class="pb-glow-2"></div></div>
+
+<main class="profile-shell">
+  <div class="profile-container">
+
+    <!-- HEADER CARD -->
+    <div class="profile-header-card reveal">
+      <div class="profile-left">
+        <div class="avatar-wrap">
+          <div class="avatar" onclick="GameDB.toast('Profile photo','Click "Edit Profile" to change your avatar','info')">
+            <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="40" fill="url(#avbg)"/><defs><linearGradient id="avbg" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#4c1d95"/><stop offset="1" stop-color="#1e1b4b"/></linearGradient></defs><circle cx="40" cy="32" r="14" fill="rgba(255,255,255,0.25)"/><ellipse cx="40" cy="68" rx="22" ry="14" fill="rgba(255,255,255,0.2)"/></svg>
+          </div>
+          <div class="avatar-status"></div>
+        </div>
+        <div class="profile-identity">
+          <div class="profile-name-row">
+            <h1 class="profile-name" id="profileName">GamerTag42</h1>
+            <span class="profile-username" id="profileHandle">@gamertag42</span>
+          </div>
+          <p class="profile-bio" id="profileBio">Open world enthusiast. RPG collector. Currently grinding through the backlog.</p>
+          <div class="profile-genre-tags">
+            <span class="genre-pill">RPG</span>
+            <span class="genre-pill">Open World</span>
+            <span class="genre-pill">Action</span>
+            <span class="genre-pill">Adventure</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn-outline" style="font-size:0.82rem;padding:0.45rem 1rem" onclick="openEditModal()">Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip reveal delay-1">
+      <div class="stat-card"><span class="stat-big" data-target="47" id="sc1">0</span><span class="stat-lbl">In Library</span></div>
+      <div class="stat-card"><span class="stat-big" data-target="12" id="sc2" style="color:var(--accent)">0</span><span class="stat-lbl">Completed</span></div>
+      <div class="stat-card"><span class="stat-big" data-target="8" id="sc3">0</span><span class="stat-lbl">Playing Now</span></div>
+      <div class="stat-card"><span class="stat-big" data-target="27" id="sc4">0</span><span class="stat-lbl">Backlog</span></div>
+    </div>
+
+    <!-- TABS -->
+    <div class="profile-tabs reveal delay-2">
+      <button class="profile-tab active" onclick="switchTab('favourites',this)">Favourites</button>
+      <button class="profile-tab" onclick="switchTab('library',this)">Library</button>
+      <button class="profile-tab" onclick="switchTab('completed',this)">Completed</button>
+    </div>
+
+    <!-- TAB: FAVOURITES -->
+    <div id="tab-favourites" class="tab-panel active">
+      <div class="section-header"><h2 class="section-heading">Favourite Games</h2><a href="#" class="see-all">See all →</a></div>
+      <div class="favorites-row">
+        <a href="game.html" class="fav-card"><div class="fav-cover"><svg viewBox="0 0 120 160" fill="none"><rect width="120" height="160" fill="url(#fav1)"/><defs><linearGradient id="fav1" x1="0" y1="0" x2="120" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#0c0400"/></linearGradient></defs><text x="60" y="87" font-size="40" text-anchor="middle" fill="rgba(255,200,80,0.2)" font-family="serif">◈</text></svg><div class="fav-score-badge">97</div></div><div class="fav-info"><div class="fav-title">Red Dead Redemption 2</div><div class="fav-sub">Action · 2018</div></div></a>
+        <a href="game.html" class="fav-card"><div class="fav-cover"><svg viewBox="0 0 120 160" fill="none"><rect width="120" height="160" fill="url(#fav2)"/><defs><linearGradient id="fav2" x1="0" y1="0" x2="120" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#4c1d95"/><stop offset="1" stop-color="#0c0820"/></linearGradient></defs><text x="60" y="87" font-size="40" text-anchor="middle" fill="rgba(200,180,255,0.2)" font-family="serif">◈</text></svg><div class="fav-score-badge">96</div></div><div class="fav-info"><div class="fav-title">Baldur's Gate 3</div><div class="fav-sub">RPG · 2023</div></div></a>
+        <a href="game.html" class="fav-card"><div class="fav-cover"><svg viewBox="0 0 120 160" fill="none"><rect width="120" height="160" fill="url(#fav3)"/><defs><linearGradient id="fav3" x1="0" y1="0" x2="120" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#065f46"/><stop offset="1" stop-color="#011c16"/></linearGradient></defs><text x="60" y="87" font-size="40" text-anchor="middle" fill="rgba(180,255,220,0.2)" font-family="serif">◈</text></svg><div class="fav-score-badge">93</div></div><div class="fav-info"><div class="fav-title">The Last of Us II</div><div class="fav-sub">Adventure · 2020</div></div></a>
+        <a href="game.html" class="fav-card"><div class="fav-cover"><svg viewBox="0 0 120 160" fill="none"><rect width="120" height="160" fill="url(#fav4)"/><defs><linearGradient id="fav4" x1="0" y1="0" x2="120" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#78350f"/><stop offset="1" stop-color="#0a0200"/></linearGradient></defs><text x="60" y="87" font-size="40" text-anchor="middle" fill="rgba(255,200,80,0.2)" font-family="serif">◈</text></svg><div class="fav-score-badge">96</div></div><div class="fav-info"><div class="fav-title">Elden Ring</div><div class="fav-sub">Action RPG · 2022</div></div></a>
+        <a href="game.html" class="fav-card"><div class="fav-cover"><svg viewBox="0 0 120 160" fill="none"><rect width="120" height="160" fill="url(#fav5)"/><defs><linearGradient id="fav5" x1="0" y1="0" x2="120" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#1e3a5f"/><stop offset="1" stop-color="#060c14"/></linearGradient></defs><text x="60" y="87" font-size="40" text-anchor="middle" fill="rgba(180,210,255,0.2)" font-family="serif">◈</text></svg><div class="fav-score-badge">94</div></div><div class="fav-info"><div class="fav-title">God of War</div><div class="fav-sub">Action · 2018</div></div></a>
+      </div>
+    </div>
+
+    <!-- TAB: LIBRARY -->
+    <div id="tab-library" class="tab-panel">
+      <div class="section-header"><h2 class="section-heading">Your Library</h2><span class="see-all">47 games</span></div>
+      <div class="completed-list">
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#l1)"/><defs><linearGradient id="l1" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#b45309"/><stop offset="1" stop-color="#0c0400"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">Red Dead Redemption 2</div><div class="cc-meta">Action · 2018</div></div><div class="cc-badge playing-badge">Playing</div></a>
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#l2)"/><defs><linearGradient id="l2" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#4c1d95"/><stop offset="1" stop-color="#0c0820"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">Baldur's Gate 3</div><div class="cc-meta">RPG · 2023</div></div><div class="cc-badge playing-badge">Playing</div></a>
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#l3)"/><defs><linearGradient id="l3" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#78350f"/><stop offset="1" stop-color="#0a0200"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">Elden Ring</div><div class="cc-meta">Action RPG · 2022</div></div><div class="cc-badge backlog-badge">Backlog</div></a>
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#l4)"/><defs><linearGradient id="l4" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#134e4a"/><stop offset="1" stop-color="#020f0c"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">The Witcher 3</div><div class="cc-meta">RPG · 2015</div></div><div class="cc-badge completed-badge">Completed</div></a>
+      </div>
+    </div>
+
+    <!-- TAB: COMPLETED -->
+    <div id="tab-completed" class="tab-panel">
+      <div class="section-header"><h2 class="section-heading">Completed Games</h2><span class="see-all">12 completed</span></div>
+      <div class="completed-list">
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#c1)"/><defs><linearGradient id="c1" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#134e4a"/><stop offset="1" stop-color="#020f0c"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">The Witcher 3</div><div class="cc-meta">RPG · 2015 · ~120h played</div></div><div class="cc-badge completed-badge">Completed</div></a>
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#c2)"/><defs><linearGradient id="c2" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#1e3a5f"/><stop offset="1" stop-color="#060c14"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">God of War</div><div class="cc-meta">Action · 2018 · ~25h played</div></div><div class="cc-badge completed-badge">Completed</div></a>
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#c3)"/><defs><linearGradient id="c3" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#4338ca"/><stop offset="1" stop-color="#0c0a20"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">Celeste</div><div class="cc-meta">Platformer · 2018 · ~12h played</div></div><div class="cc-badge completed-badge">Completed</div></a>
+        <a href="game.html" class="completed-card"><div class="cc-cover"><svg viewBox="0 0 56 56" fill="none"><rect width="56" height="56" fill="url(#c4)"/><defs><linearGradient id="c4" x1="0" y1="0" x2="56" y2="56" gradientUnits="userSpaceOnUse"><stop stop-color="#7f1d1d"/><stop offset="1" stop-color="#1a0008"/></linearGradient></defs></svg></div><div class="cc-info"><div class="cc-title">Hades</div><div class="cc-meta">Roguelike · 2020 · ~35h played</div></div><div class="cc-badge completed-badge">Completed</div></a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- EDIT MODAL -->
+<div class="modal-backdrop" id="editModal" onclick="closeEditModal(event)">
+  <div class="modal">
+    <h2 class="modal-title">Edit Profile</h2>
+    <div class="modal-field"><label class="modal-label">Display Name</label><input class="modal-input" id="editName" value="GamerTag42"></div>
+    <div class="modal-field"><label class="modal-label">Username</label><input class="modal-input" id="editHandle" value="@gamertag42"></div>
+    <div class="modal-field"><label class="modal-label">Bio</label><input class="modal-input" id="editBio" value="Open world enthusiast. RPG collector."></div>
+    <div class="modal-actions">
+      <button class="btn-outline" style="font-size:0.85rem;padding:0.5rem 1.2rem" onclick="closeEditModal()">Cancel</button>
+      <button class="btn-accent" style="font-size:0.85rem;padding:0.5rem 1.4rem" onclick="saveProfile()">Save changes</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="logo-icon">◈</span><span class="logo-text">GameDB</span><p class="footer-tagline">Your personal video game companion.</p></div>
+    <div class="footer-cols">
+      <div class="footer-col"><h4>Navigate</h4><a href="index.html">Home</a><a href="search.html">Search</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="signin.html">Sign in</a><a href="signup.html">Sign up</a></div>
+      <div class="footer-col"><h4>Tags</h4><div class="footer-tags"><span class="ftag">Action</span><span class="ftag">RPG</span><span class="ftag">Adventure</span></div></div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 GameDB. All rights reserved.</div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// Tabs
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.profile-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Animated stat counters
+const statObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    ['sc1','sc2','sc3','sc4'].forEach(id => {
+      const el = document.getElementById(id);
+      GameDB.animateCounter(el, parseInt(el.dataset.target), '');
+    });
+    statObs.disconnect();
+  }
+}, { threshold: 0.5 });
+statObs.observe(document.querySelector('.stats-strip'));
+
+// Edit Modal
+function openEditModal() {
+  document.getElementById('editModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeEditModal(e) {
+  if (e && e.target !== document.getElementById('editModal')) return;
+  document.getElementById('editModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function saveProfile() {
+  document.getElementById('profileName').textContent = document.getElementById('editName').value;
+  document.getElementById('profileHandle').textContent = document.getElementById('editHandle').value;
+  document.getElementById('profileBio').textContent = document.getElementById('editBio').value;
+  document.getElementById('editModal').classList.remove('open');
+  document.body.style.overflow = '';
+  GameDB.toast('Profile updated!', 'Your changes have been saved', 'success');
+}
+</script>
+</body>
+</html>
